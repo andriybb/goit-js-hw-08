@@ -64,7 +64,7 @@ const images = [
     description: 'Lighthouse Coast Sea',
   },
 ];
-const imageElem = document.querySelector(`ul`);
+const imageElem = document.querySelector(`ul.gallery`);
 
 function imgItem ({preview, original, description}){
 
@@ -87,9 +87,7 @@ function imgList (images){
 
 const markup = imgList(images);
 imageElem.innerHTML = markup;
-
-const gallery = document.querySelector('.gallery');
-gallery.addEventListener('click', e => {
+imageElem.addEventListener('click', e => {
   if (e.target.nodeName === 'IMG') {
     e.preventDefault();
     console.log(e.target.dataset.source);
