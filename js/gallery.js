@@ -1,3 +1,4 @@
+
 const images = [
   {
     preview:
@@ -63,9 +64,8 @@ const images = [
     description: 'Lighthouse Coast Sea',
   },
 ];
+const imageElem = document.querySelector(`ul`);
 
-const ulElem = document.querySelector(`ul`);
-const liElem = document.querySelector(`li`);
 function imgItem ({preview, original, description}){
 
     return `
@@ -74,7 +74,7 @@ function imgItem ({preview, original, description}){
             <img
             class="gallery-image"
             src="${preview}"
-            data-source="large-image.jpg"
+            data-source="${original}"
             alt="${description}"
             />
         </a>
@@ -86,4 +86,15 @@ function imgList (images){
 }
 
 const markup = imgList(images);
-ulElem.innerHTML = markup;
+imageElem.innerHTML = markup;
+
+const gallery = document.querySelector('.gallery');
+gallery.addEventListener('click', e => {
+  if (e.target.nodeName === 'IMG') {
+    e.preventDefault();
+    console.log(e.target.dataset.source);
+   const instance = basicLightbox.create(`<img src="${e.target.dataset.source}" width="1112" height="640">`);
+instance.show()}});
+
+
+
